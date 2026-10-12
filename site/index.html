@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>seedr-cli</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <strong>seedr-cli</strong>
+      <span class="muted" id="userEmail">…</span>
+    </div>
+    <nav class="tabs">
+      <button data-tab="dashboard" class="tab active">Dashboard</button>
+      <button data-tab="files" class="tab">Files</button>
+      <button data-tab="settings" class="tab">Settings</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-dashboard" class="view">
+      <div class="card">
+        <div class="row">
+          <span class="label">storage</span>
+          <div class="bar"><div class="bar-fill" id="quotaBar"></div></div>
+          <span id="quotaText" class="muted">– / –</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Add magnet</h2>
+        <div class="row">
+          <input id="magnetInput" type="text" placeholder="magnet:?xt=urn:btih:…" />
+          <button id="addBtn" class="primary">Add</button>
+        </div>
+        <p class="muted small">Paste a magnet link and press Add (or Enter).</p>
+      </div>
+
+      <div id="progressCard" class="card hidden">
+        <h2>Progress</h2>
+        <div class="row">
+          <div class="bar"><div class="bar-fill" id="progressBar"></div></div>
+          <span id="progressPct">0%</span>
+        </div>
+        <p id="progressStatus" class="muted small">–</p>
+      </div>
+
+      <div id="resultCard" class="card hidden">
+        <h2>Ready</h2>
+        <div class="kv"><span class="label">file</span><span id="resultName">–</span></div>
+        <div class="kv"><span class="label">size</span><span id="resultSize" class="muted">–</span></div>
+        <div class="kv"><span class="label">link</span></div>
+        <code id="resultUrl" class="url">–</code>
+        <div class="row actions">
+          <button id="copyBtn">Copy link</button>
+          <button id="vlcBtn" class="primary">▶ Play in VLC</button>
+        </div>
+      </div>
+
+      <div id="pickerCard" class="card hidden">
+        <h2>Pick a file</h2>
+        <ul id="pickerList" class="file-list"></ul>
+      </div>
+
+      <div id="errorCard" class="card hidden error">
+        <h2>Error</h2>
+        <p id="errorMsg" class="muted">–</p>
+      </div>
+    </section>
+
+    <section id="tab-files" class="view hidden">
+      <div class="card">
+        <div class="row">
+          <nav id="crumbs" class="crumbs"></nav>
+          <button id="refreshBtn" class="small">Refresh</button>
+        </div>
+        <ul id="fileList" class="file-list"></ul>
+        <p id="fileListEmpty" class="muted small hidden">this folder is empty</p>
+      </div>
+    </section>
+
+    <section id="tab-settings" class="view hidden">
+      <div class="card">
+        <h2>Settings</h2>
+        <div id="settingsList"></div>
+        <div class="row actions">
+          <button id="saveSettingsBtn" class="primary">Save</button>
+        </div>
+        <p class="muted small">Changes are saved to the config file and apply immediately.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="muted small">
+    seedr-cli · PAT-secured · localhost only
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
